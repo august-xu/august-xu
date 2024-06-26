@@ -48,4 +48,7 @@
 
 <img src="https://raw.githubusercontent.com/august-xu/august-xu/output/snake.svg" alt="Snake animation" />
 
+### Small Tools
+1. [Case Converter](https://convertcase.indiehacker.online/)
+
 ###
