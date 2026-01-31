@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Groq AI 网页一键总结 (V1.21 原版图标回归)
 // @namespace    http://tampermonkey.net/
-// @version      1.21
+// @version      1.22
 // @description  图标回归 ✨ Emoji，精致小圆点，适配移动端拖拽与深度总结
 // @author       YourName
 // @match        *://*/*
@@ -84,8 +84,8 @@
         /* 移动端：精致小圆点 (38px) */
         @media (max-width: 600px) {
             #groq-btn {
-                width: 30px !important;
-                height: 30px !important;
+                width: 25px !important;
+                height: 25px !important;
                 border-radius: 50% !important;
                 box-shadow: 0 2px 12px rgba(0,0,0,0.3) !important;
             }
