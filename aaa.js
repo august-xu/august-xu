@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Groq AI 网页一键总结 (V1.22 原版图标回归)
+// @name         Groq AI 网页一键总结 (V1.22)
 // @namespace    http://tampermonkey.net/
 // @version      1.22
 // @description  图标回归 ✨ Emoji，精致小圆点，适配移动端拖拽与深度总结
