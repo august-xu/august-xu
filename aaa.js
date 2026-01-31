@@ -84,8 +84,8 @@
         /* 移动端：精致小圆点 (38px) */
         @media (max-width: 600px) {
             #groq-btn {
-                width: 38px !important;
-                height: 38px !important;
+                width: 36px !important;
+                height: 36px !important;
                 border-radius: 50% !important;
                 box-shadow: 0 2px 12px rgba(0,0,0,0.3) !important;
             }
