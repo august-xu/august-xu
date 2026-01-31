@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Groq AI 网页一键总结 (V1.19 移动端显示修复版)
+// @name         Groq AI 网页一键总结 (V1.20 精致小图标版)
 // @namespace    http://tampermonkey.net/
-// @version      1.19
-// @description  使用SVG图标代替Emoji，提高移动端兼容性，默认位置上移避开底部工具栏
+// @version      1.20
+// @description  移动端图标缩小至36px，半透明悬浮，防遮挡，支持拖拽与深度总结
 // @author       YourName
 // @match        *://*/*
 // @grant        GM_xmlhttpRequest
@@ -16,7 +16,7 @@
 (function() {
     'use strict';
 
-    console.log("Groq AI Script V1.19 Starting...");
+    console.log("Groq AI V1.20 Loaded.");
 
     // ================= 配置区域 =================
     const API_URL = "https://api.groq.com/openai/v1/chat/completions";
@@ -31,9 +31,9 @@
     const PANEL_WIDTH_PC = 500;
     // ===========================================
 
-    // SVG 图标 (机器人形状)
+    // SVG 图标 (机器人)
     const SVG_ICON = `
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 6C13.66 6 15 7.34 15 9C15 10.66 13.66 12 12 12C10.34 12 9 10.66 9 9C9 7.34 10.34 6 12 6ZM12 20C9.33 20 7 18 7 15H17C17 18 14.67 20 12 20Z" fill="white"/>
     </svg>`;
 
@@ -46,7 +46,6 @@
             display: block !important;
         }
 
-        /* 基础复位 */
         * { box-sizing: border-box !important; -webkit-tap-highlight-color: transparent; }
 
         #groq-btn {
@@ -55,26 +54,28 @@
             justify-content: center !important;
             position: fixed !important;
             z-index: 2147483647 !important;
-            background: linear-gradient(135deg, #007AFF, #0056b3) !important;
+            /* 渐变背景，稍微带点透明度 */
+            background: linear-gradient(135deg, rgba(0,122,255,0.9), rgba(0,86,179,0.9)) !important;
             color: white !important;
             cursor: pointer !important;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
             border: none !important;
             outline: none !important;
             user-select: none !important;
-            touch-action: none !important; /* 关键：阻止浏览器默认滚动，允许拖拽 */
+            touch-action: none !important;
             transition: transform 0.1s !important;
+            padding: 0 !important;
         }
         
         #groq-btn:active { transform: scale(0.9) !important; }
 
-        /* PC端样式 */
+        /* PC端：保持长条 */
         @media (min-width: 601px) {
             #groq-btn {
                 height: 44px !important;
                 padding: 0 20px !important;
                 border-radius: 50px !important;
                 min-width: 130px !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
             }
             .btn-text { 
                 display: inline-block !important; 
@@ -84,20 +85,25 @@
                 font-size: 15px !important;
                 color: white !important;
             }
-            .btn-icon svg { width: 20px; height: 20px; }
+            .btn-icon { width: 20px; height: 20px; display: block; }
         }
 
-        /* 移动端样式 - 纯图标圆形 */
+        /* 移动端：精致小圆点 (36px) */
         @media (max-width: 600px) {
             #groq-btn {
-                width: 50px !important;
-                height: 50px !important;
+                width: 36px !important;
+                height: 36px !important;
                 border-radius: 50% !important;
-                padding: 0 !important;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2) !important;
             }
             .btn-text { display: none !important; }
-            .btn-icon { display: flex !important; align-items: center; justify-content: center; width: 100%; height: 100%; }
-            .btn-icon svg { width: 26px; height: 26px; }
+            .btn-icon { 
+                display: flex !important; 
+                align-items: center; 
+                justify-content: center; 
+                width: 18px !important; /* 图标也对应缩小 */
+                height: 18px !important; 
+            }
         }
 
         /* 面板样式 */
@@ -128,11 +134,11 @@
             padding: 0 16px !important;
             background: #f5f5f7 !important;
             border-bottom: 1px solid #e0e0e0 !important;
-            height: 50px !important;
+            height: 45px !important;
             flex-shrink: 0 !important;
             color: #333 !important;
             font-weight: bold !important;
-            font-size: 16px !important;
+            font-size: 15px !important;
         }
 
         #groq-content {
@@ -147,7 +153,7 @@
         }
 
         /* Markdown */
-        h3 { display: block !important; font-size: 17px !important; margin: 15px 0 10px 0 !important; color: #007AFF !important; border-left: 4px solid #007AFF !important; padding-left: 10px !important; font-weight: bold !important; }
+        h3 { display: block !important; font-size: 16px !important; margin: 15px 0 8px 0 !important; color: #007AFF !important; border-left: 3px solid #007AFF !important; padding-left: 8px !important; font-weight: bold !important; }
         strong { color: #d93025 !important; font-weight: 700 !important; }
         ul { display: block !important; padding-left: 20px !important; margin: 10px 0 !important; }
         li { display: list-item !important; margin-bottom: 6px !important; list-style-type: disc !important; }
@@ -164,19 +170,18 @@
             gap: 10px !important;
             align-items: center !important;
             background: #f5f5f7 !important;
-            height: 55px !important;
+            height: 50px !important;
         }
-        .model-select { flex-grow: 1 !important; height: 32px !important; border-radius: 6px !important; border: 1px solid #ccc !important; font-size: 13px !important; }
+        .model-select { flex-grow: 1 !important; height: 30px !important; border-radius: 6px !important; border: 1px solid #ccc !important; font-size: 13px !important; }
         .link-btn { color: #007AFF !important; cursor: pointer !important; font-size: 12px !important; }
-        .close-btn { cursor: pointer !important; font-size: 24px !important; color: #888 !important; padding: 0 10px !important; }
+        .close-btn { cursor: pointer !important; font-size: 20px !important; color: #888 !important; padding: 0 10px !important; }
     `;
 
     let apiKey = GM_getValue('groq_api_key', '');
     let currentModel = GM_getValue('groq_current_model', MODEL_LIST[0].id);
     let btnPosX = GM_getValue('btn_pos_x', 'auto');
-    let btnPosY = GM_getValue('btn_pos_y', '15%'); // 默认位置上移到 15%
+    let btnPosY = GM_getValue('btn_pos_y', '15%');
 
-    // 渲染函数保持不变
     function renderMarkdown(text) {
         if (!text) return "";
         let lines = text.split('\n');
@@ -240,8 +245,6 @@
 
     function ensureGUI() {
         if (document.getElementById('groq-host-root')) return;
-        
-        // 挂载点：优先 HTML，其次 Body
         const mountPoint = document.documentElement || document.body;
         if (!mountPoint) return;
 
@@ -274,16 +277,14 @@
         const panel = shadow.querySelector('#groq-panel');
         const contentDiv = shadow.querySelector('#groq-content');
 
-        // 初始化位置
         if (btnPosX === 'auto') { 
             btn.style.right = '20px'; 
-            btn.style.bottom = btnPosY; // 使用 15% 避开底栏
+            btn.style.bottom = btnPosY; 
         } else { 
             btn.style.left = btnPosX; 
             btn.style.bottom = btnPosY; 
         }
 
-        // 拖拽逻辑
         let isDragging = false;
         let startX, startY, initialLeft, initialBottom;
 
@@ -347,7 +348,7 @@
     }
 
     function runAnalysis(contentDiv) {
-        contentDiv.innerHTML = `<p style="color:#666">⏳ 正在智能分析内容...</p>`;
+        contentDiv.innerHTML = `<p style="color:#666">⏳ 正在分析...</p>`;
         let rawText = "";
         const selectors = ['article', 'main', '.post-content', '#content', 'body'];
         for (let sel of selectors) {
@@ -362,7 +363,6 @@
         if (!rawText) rawText = document.body.innerText;
         rawText = rawText.replace(/\s+/g, ' ').substring(0, MAX_CONTEXT_CHARS);
 
-        // V1.11 核心提示词
         const SYSTEM_PROMPT = `你是一个专业的网页内容分析助手。请对用户提供的网页内容（可能是中文或英文）进行深度总结。
 要求：始终使用【简体中文】输出。
 结构：
