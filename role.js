@@ -25,12 +25,12 @@
      }
 
      var customRules = [
-       "GEOSITE,meta,zgo-reality",
-       "GEOSITE,tiktok,zgo-reality",
+       "GEOSITE,meta,go-cf",
+       "GEOSITE,tiktok,go-cf",
        "DOMAIN-KEYWORD,av,视频",
        "DOMAIN,dl.google.com,🚀 节点选择",
-       "GEOSITE,openai,zgo-reality",
-       "GEOSITE,google-deepmind,zgo-reality",
+       "GEOSITE,openai,go-cf",
+       "GEOSITE,google-deepmind,go-cf",
        "DOMAIN-SUFFIX,yfsp.tv,视频",
        "DOMAIN,ip.sb,🚀 节点选择",
        "DOMAIN-KEYWORD,aistudio,🚀 节点选择",
