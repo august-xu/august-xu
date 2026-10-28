@@ -35,6 +35,7 @@
        "DOMAIN,ip.sb,🚀 节点选择",
        "DOMAIN-KEYWORD,aistudio,🚀 节点选择",
        "DOMAIN-KEYWORD,seagm,DIRECT",
+       "DOMAIN-KEYWORD,caiyunapp,DIRECT",
        "DOMAIN-KEYWORD,ad,🚀 节点选择",
        "DOMAIN,ghproxy.net,DIRECT",
        "DOMAIN-KEYWORD,missav,🚀 节点选择",
