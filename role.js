@@ -27,6 +27,7 @@
      var customRules = [
        "GEOSITE,meta,go-cf",
        "GEOSITE,tiktok,go-cf",
+       "GEOSITE,google@ads,zgo-ss",
        "DOMAIN-KEYWORD,av,视频",
        "DOMAIN,dl.google.com,🚀 节点选择",
        "GEOSITE,openai,go-cf",
