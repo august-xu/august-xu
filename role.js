@@ -34,6 +34,7 @@
        "GEOSITE,google-deepmind,go-cf",
        "DOMAIN-SUFFIX,yfsp.tv,视频",
        "DOMAIN-SUFFIX,youtube.com,视频",
+       "DOMAIN-SUFFIX,googlevideo.com,视频",
        "DOMAIN-KEYWORD,zip0,视频",
        "DOMAIN,ip.sb,🚀 节点选择",
        "DOMAIN-KEYWORD,aistudio,🚀 节点选择",
