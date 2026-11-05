@@ -31,7 +31,7 @@
        "DOMAIN-KEYWORD,av,视频",
        "DOMAIN,dl.google.com,🚀 节点选择",
        "GEOSITE,openai,go-cf",
-       "GEOSITE,google-deepmind,go-cf",
+       "GEOSITE,google-deepmind,zgo-ss",
        "DOMAIN-SUFFIX,yfsp.tv,视频",
        "DOMAIN-SUFFIX,youtube.com,视频",
        "DOMAIN-SUFFIX,googlevideo.com,视频",
