@@ -25,20 +25,20 @@
      }
 
      var customRules = [
-       "GEOSITE,meta,go-cf",
-       "GEOSITE,tiktok,go-cf",
+       "GEOSITE,meta,zgo-tuic",
+       "GEOSITE,tiktok,视频",
        "GEOSITE,google@ads,zgo-ss",
        "DOMAIN-KEYWORD,av,视频",
        "DOMAIN,dl.google.com,🚀 节点选择",
-       "GEOSITE,openai,go-cf",
-       "GEOSITE,google-deepmind,zgo-ss",
+       "GEOSITE,openai,zgo-tuic",
+       "GEOSITE,google-deepmind,zgo-tuic",
        "DOMAIN-SUFFIX,yfsp.tv,视频",
        "DOMAIN-SUFFIX,youtube.com,视频",
        "DOMAIN-SUFFIX,googlevideo.com,视频",
-      "DOMAIN-SUFFIX,weixinbridge.com,DIRECT",
+       "DOMAIN-SUFFIX,weixinbridge.com,DIRECT",
        "DOMAIN-KEYWORD,zip0,视频",
        "DOMAIN,ip.sb,🚀 节点选择",
-       "DOMAIN-KEYWORD,aistudio,🚀 节点选择",
+       "DOMAIN-KEYWORD,aistudio,zgo-tuic",
        "DOMAIN-KEYWORD,seagm,DIRECT",
        "DOMAIN-KEYWORD,caiyunapp,DIRECT",
        "DOMAIN-KEYWORD,ad,🚀 节点选择",
@@ -47,7 +47,7 @@
        "DOMAIN,analytics.google.com,🚀 节点选择",
        "DOMAIN,vscjava.gallery.vsassets.io,🚀 节点选择",
        "DOMAIN,ads.google.com,🚀 节点选择",
-       "DOMAIN-SUFFIX,immersivetranslate.com,vless-reality-clone"
+       "DOMAIN-SUFFIX,immersivetranslate.com,🚀 节点选择"
      ];
 
      if (!config["rules"]) {
